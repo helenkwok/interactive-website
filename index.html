@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside id="sidebar">
+    <img id="company-logo" src="./assets/company-logo.svg" alt="Construction Company">
+    <ul id="nav-buttons">
+      <li id="projects-btn"><span class="material-symbols-rounded">apartment</span>Projects</li>
+      <li id="users-btn"><span class="material-symbols-rounded">people</span>Users</li>
+    </ul>
+  </aside>
+  <main id="content">
+    <div class="page" id="projects-page" style="display: flex;">
+      <dialog id="new-project-modal">
+        <form id="new-project-form">
+          <h2>New Project</h2>
+          <div class="input-list">
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">apartment</span>Name</label>
+              <input name="name" type="text" placeholder="What's the name of your project?">
+              <p style="color: gray; font-size: var(--font-sm); margin-top: 5px; font-style: italic;">TIP: Give it a short name</p>
+            </div>
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">subject</span>Description</label>
+              <textarea name="description" cols="30" rows="5" placeholder="Give your project a nice description! So people is jealous about it."></textarea>
+            </div>
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">person</span>Role</label>
+              <select name="userRole">
+                <option>Architect</option>
+                <option>Engineer</option>
+                <option>Developer</option>
+              </select>
+            </div>
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">not_listed_location</span>Status</label>
+              <select name="status">
+                <option>Pending</option>
+                <option>Active</option>
+                <option>Finished</option>
+              </select>
+            </div>
+            <div class="form-field-container">
+              <label for="finishDate">
+                <span class="material-symbols-rounded-action-button">calendar_month</span>
+                Finish Date
+              </label>
+              <input name="finishDate" type="date"></input>
+            </div>
+            <div style="display: flex; margin: 10px 0px 10px auto; column-gap: 10px;">
+              <button type="reset" style="background-color: transparent;">Cancel</button>
+              <button type="submit" style="background-color: rgb(18, 145, 18);">Accept</button>
+            </div>
+          </div>
+        </form>
+      </dialog>
+      <header>
+        <h2>Projects</h2>
+        <div style="display: flex; align-items: center; column-gap: 15px;">
+          <span id="import-projects-btn" class="material-symbols-rounded action-button">upload</span>
+          <span id="export-projects-btn" class="material-symbols-rounded action-button">download</span>
+          <button id="new-project-btn"><span class="material-symbols-rounded">add</span>New Project</button>
+        </div>
+      </header>
+      <div id="projects-list"></div>
+      </div>
+    </div>
+    <div class="page" id="project-details" style="display: none;">
+      <header>
+        <div>
+          <h2>Hospital Center</h2>
+          <p style="color: #969696">Community hospital located at downtown</p>
+        </div>
+      </header>
+      <div class="main-page-content">
+        <div style="display: flex; flex-direction: column; row-gap: 30px;">
+          <div class="dashboard-card" style="padding: 30px 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0px 30px; margin-bottom: 30px;">
+              <p style="font-size: 20px; background-color: #ca8134; aspect-ratio: 1; border-radius: 100%; padding: 12px;">HC</p>
+              <button class="btn-secondary"><p style="width: 100%;">Edit</p></button>
+            </div>
+            <div style="padding: 0 30px;">
+              <div>
+                <h5>Hospital Center</h5>
+                <p>Community hospital located at downtown</p>
+              </div>
+              <div style="display: flex; column-gap: 30px; padding: 30px 0px; justify-content: space-between;">
+                <div>
+                  <p style="color: #969696; font-size: var(--font-sm)">Status</p>
+                  <p>Active</p>
+                </div>
+                <div>
+                  <p style="color: #969696; font-size: var(--font-sm)">Cost</p>
+                  <p>$ 2'542.000</p>
+                </div>
+                <div>
+                  <p style="color: #969696; font-size: var(--font-sm)">Role</p>
+                  <p>Engineer</p>
+                </div>
+                <div>
+                  <p style="color: #969696; font-size: var(--font-sm)">Finish Date</p>
+                  <p>2023-05-01</p>
+                </div>
+              </div>
+              <div style="background-color: #404040; border-radius: 9999px; overflow: auto;">
+                <div style="width: 80%; background-color: green; padding: 4px 0; text-align: center;">80%</div>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-card" style="flex-grow: 1;">
+            <div style="padding: 20px 30px; display: flex; align-items: center; justify-content: space-between;">
+              <h4>To-Do</h4>
+              <div style="display: flex; align-items: center; justify-content: end; column-gap: 20px;">
+                <div style="display: flex; align-items: center; column-gap: 10px;">
+                  <span class="material-symbols-rounded">search</span>
+                  <input type="text" placeholder="Search To-Do's by name" style="width: 100%;">
+                </div>
+                <span class="material-symbols-rounded">add</span>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; padding: 10px 30px; row-gap: 20px;">
+              <div class="todo-item">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div style="display: flex; column-gap: 15px; align-items: center;">
+                    <span class="material-symbols-rounded" style="padding: 10px; background-color: #686868; border-radius: 10px;">construction</span>
+                    <p>Make anything here as you want, even something longer.</p>
+                  </div>
+                  <p style="text-wrap: nowrap; margin-left: 10px;">Fri, 20 sep</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="viewer-container" class="dashboard-card"></div>
+      </div>
+    </div>
+    <div class="page" id="people-page" style="display: none;">
+      <dialog id="new-user-modal">
+        <form>
+          <h2>New User</h2>
+          <div class="input-list">
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">id_card</span>Name</label>
+              <input type="text" placeholder="What's your name?">
+            </div>
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">email</span>Email Address</label>
+              <input type="email" placeholder="What's your email address?">
+              <p style="color: gray; font-size: var(--font-sm); margin-top: 5px; font-style: italic;">TIP: Your company email address</p>
+            </div>
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">person</span>Role</label>
+              <select>
+                <option>Architect</option>
+                <option>Engineer</option>
+                <option>Developer</option>
+              </select>
+            </div>
+            <div style="display: flex; margin: 10px 0px 10px auto; column-gap: 10px;">
+              <button style="background-color: transparent;">Cancel</button>
+              <button style="background-color: rgb(18, 145, 18);">Accept</button>
+            </div>
+          </div>
+        </form>
+      </dialog>
+      <header>
+        <h2>People</h2>
+        <div>
+          <button><span class="material-symbols-rounded">add</span>New User</button>
+        </div>
+      </header>
+      <div id="users-list">
+        <div class="user-card">
+          <div class="user-list-header">
+            <div class="user-header">
+              <p style="color: #969696;">User</p>
+            </div>
+            <div class="user-property">
+              <p style="color: #969696;">Role</p>
+            </div>
+            <div class="user-property">
+              <p style="color: #969696;">Email address</p>
+            </div>
+          </div>
+        </div>
+        <div class="user-card">
+          <div class="user-content">
+            <div class="user-header">
+              <p style="background-color: #ca8134; padding: 10px; border-radius: 8px; aspect-ratio: 1;">HK</p>
+              <div>
+                <h5>Helen Kwok</h5>
+                <p>@helen</p>
+              </div>
+            </div>
+            <div class="user-property">
+              <p>Engineer</p>
+            </div>
+            <div class="user-property">
+              <p>helen@abc.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="./src/index.ts"></script>
+</body>
+</html>
