@@ -27,11 +27,43 @@ export class ProjectManager {
       const detailsPage = document.getElementById('project-details')
       if (!(projectsPage && detailsPage)) return
       projectsPage.style.display = 'none'
-      detailsPage.style.display = 'block'
+      detailsPage.style.display = 'flex'
+      this.setDetailsPage(project)
     })
     this.ui.append(project.ui)
     this.list.push(project)
     return project
+  }
+
+  private updateProjectInfo(page: HTMLElement, attribute: string, value: string) {
+    const projectInfo = page.querySelectorAll(`[data-project-info="${attribute}"]`) as NodeListOf<HTMLElement>
+    if (projectInfo) {
+      for (const element of projectInfo) {
+        element.textContent = value
+        if (attribute === 'progress') {
+          element.style.width = parseInt(value) + '%'
+        }
+      }
+    }
+  }
+
+  private setDetailsPage(project: Project) {
+    const detailsPage = document.getElementById('project-details')
+    if (!detailsPage) return
+
+    for  (const key in project) {
+      const value = project[key as keyof Project]
+      this.updateProjectInfo(detailsPage, key, `${value}`)
+      if (key === 'finishDate') {
+        this.updateProjectInfo(detailsPage, key, (value as Date).toDateString())
+      }
+      if (key === 'cost') {
+        this.updateProjectInfo(detailsPage, key, `$${value}`)
+      }
+      if (key === 'progress') {
+        this.updateProjectInfo(detailsPage, key, `${value}%`)
+      }
+    }
   }
 
   getProject(id: string) {
