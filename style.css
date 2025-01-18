@@ -16,6 +16,12 @@
   --font-xl: 18px;
   --font-2xl: 20px;
   --font-3xl: 22px;
+  --pending: #E24B18;
+  --pending-200: #D98164;
+  --active: #f7c744;
+  --active-200: #f7d87c;
+  --finished: #4caf50;
+  --finished-200: #7cc47f;
 }
 
 * {
@@ -344,8 +350,32 @@ input:focus, textarea:focus, select:focus {
   cursor: pointer;
 }
 
+.todo-item.pending {
+  background-color: var(--pending);
+}
+
+.todo-item.active {
+  background-color: var(--active);
+}
+
+.todo-item.finished {
+  background-color: var(--finished);
+}
+
 .todo-item:hover {
   background-color: var(--primary);
+}
+
+.todo-item.pending:hover {
+  background-color: var(--pending-200);
+}
+
+.todo-item.active:hover {
+  background-color: var(--active-200);
+}
+
+.todo-item.finished:hover {
+  background-color: var(--finished-200);
 }
 
 .action-button {

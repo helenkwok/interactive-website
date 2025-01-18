@@ -23,7 +23,7 @@
           <div class="input-list">
             <div class="form-field-container">
               <label><span class="material-symbols-rounded">apartment</span>Name</label>
-              <input name="name" type="text" placeholder="What's the name of your project?">
+              <input name="name" type="text" minlength="5" placeholder="What's the name of your project?" required>
               <p style="color: gray; font-size: var(--font-sm); margin-top: 5px; font-style: italic;">TIP: Give it a short name</p>
             </div>
             <div class="form-field-container">
@@ -33,22 +33,22 @@
             <div class="form-field-container">
               <label><span class="material-symbols-rounded">person</span>Role</label>
               <select name="userRole">
-                <option>Architect</option>
-                <option>Engineer</option>
-                <option>Developer</option>
+                <option value="architect">Architect</option>
+                <option value="engineer">Engineer</option>
+                <option value="developer">Developer</option>
               </select>
             </div>
             <div class="form-field-container">
               <label><span class="material-symbols-rounded">not_listed_location</span>Status</label>
               <select name="status">
-                <option>Pending</option>
-                <option>Active</option>
-                <option>Finished</option>
+                <option value="pending">Pending</option>
+                <option value="active">Active</option>
+                <option value="finished">Finished</option>
               </select>
             </div>
             <div class="form-field-container">
               <label for="finishDate">
-                <span class="material-symbols-rounded-action-button">calendar_month</span>
+                <span class="material-symbols-rounded">calendar_month</span>
                 Finish Date
               </label>
               <input name="finishDate" type="date"></input>
@@ -78,22 +78,150 @@
           <p data-project-info="description" style="color: #969696">Community hospital located at downtown</p>
         </div>
       </header>
+      <dialog id="edit-project-modal">
+        <form id="edit-project-form">
+          <h2>Edit Project</h2>
+          <div class="input-list">
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">
+                asterisk
+                </span>ID</label>
+              <input data-project-info="id" type="text" name="id" disabled></input>
+            </div>
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">apartment</span>Name</label>
+              <input data-project-info="buildingName" name="buildingName" type="text" minlength="5" placeholder="What's the name of your building?" required>
+              <p style="color: gray; font-size: var(--font-sm); margin-top: 5px; font-style: italic;">TIP: Give it a short name</p>
+            </div>
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">subject</span>Description</label>
+              <textarea data-project-info="buildingDescription" name="buildingDescription" cols="30" rows="5" placeholder="Give your building a nice description! So people is jealous about it."></textarea>
+            </div>
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">person</span>Role</label>
+              <select name="userRole" >
+                <option value="architect">Architect</option>
+                <option value="engineer">Engineer</option>
+                <option value="developer">Developer</option>
+              </select>
+            </div>
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">not_listed_location</span>Status</label>
+              <select name="status">
+                <option value="pending">Pending</option>
+                <option value="active">Active</option>
+                <option value="finished">Finished</option>
+              </select>
+            </div>
+            <div class="form-field-container">
+              <label for="finishDate">
+                <span class="material-symbols-rounded">calendar_month</span>
+                Finish Date
+              </label>
+              <input data-project-info="finishDate" name="finishDate" type="date"></input>
+            </div>
+            <div class="form-field-container">
+              <label for="cost">
+                <span class="material-symbols-rounded">schedule</span>
+                Cost
+              </label>
+              <input data-project-info="cost" name="cost" type="number" min="0"></input>
+            </div>
+            <div class="form-field-container">
+              <label for="progress">
+                <span class="material-symbols-rounded">schedule</span>
+                Progress
+              </label>
+              <input data-project-info="progress" name="progress" type="number" min="0" max="100"></input>
+            </div>
+            <div style="display: flex; margin: 10px 0px 10px auto; column-gap: 10px;">
+              <button type="button" id="project-cancel-btn" style="background-color: transparent;">Cancel</button>
+              <button type="submit" style="background-color: rgb(18, 145, 18);">Accept</button>
+            </div>
+          </div>
+        </form>
+      </dialog>
+      <dialog id="new-todo-modal">
+        <form id="new-todo-form">
+          <h2>New To-Do</h2>
+          <div class="input-list">
+            <input data-project-info="id" type="text" name="projectId" hidden></input>
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">apartment</span>Task</label>
+              <input name="task" type="text" minlength="5" placeholder="What's the task?" required>
+              <p style="color: gray; font-size: var(--font-sm); margin-top: 5px; font-style: italic;">TIP: Make it concise</p>
+            </div>
+            <div class="form-field-container">
+              <label for="dueDate">
+                <span class="material-symbols-rounded">calendar_month</span>
+                Due Date
+              </label>
+              <input name="dueDate" type="date"></input>
+            </div>
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">not_listed_location</span>Status</label>
+              <select name="status">
+                <option value="pending">Pending</option>
+                <option value="active">Active</option>
+                <option value="finished">Finished</option>
+              </select>
+            </div>
+            <div style="display: flex; margin: 10px 0px 10px auto; column-gap: 10px;">
+              <button type="reset" style="background-color: transparent;">Cancel</button>
+              <button type="submit" style="background-color: rgb(18, 145, 18);">Accept</button>
+            </div>
+          </div>
+        </form>
+      </dialog>
+      <dialog id="edit-todo-modal">
+        <form id="edit-todo-form">
+          <h2>Edit To-Do</h2>
+          <div class="input-list">
+            <input data-project-info="id" type="text" name="projectId" hidden></input>
+            <input data-todo-info="id" type="text" name="todoId" hidden></input>
+             <div class="form-field-container">
+              <label><span class="material-symbols-rounded">apartment</span>Task</label>
+              <input data-todo-info="task" name="task" type="text" minlength="5" placeholder="What's the task?" required>
+              <p style="color: gray; font-size: var(--font-sm); margin-top: 5px; font-style: italic;">TIP: Make it concise</p>
+            </div>
+            <div class="form-field-container">
+              <label for="dueDate">
+                <span class="material-symbols-rounded">calendar_month</span>
+                Due Date
+              </label>
+              <input data-todo-info="dueDate" name="dueDate" type="date"></input>
+            </div>
+            <div class="form-field-container">
+              <label><span class="material-symbols-rounded">not_listed_location</span>Status</label>
+              <select data-todo-info="status" name="status">
+                <option value="pending">Pending</option>
+                <option value="active">Active</option>
+                <option value="finished">Finished</option>
+              </select>
+            </div>
+            <div style="display: flex; margin: 10px 0px 10px auto; column-gap: 10px;">
+              <button type="button" id="todo-cancel-btn" style="background-color: transparent;">Cancel</button>
+              <button type="submit" style="background-color: rgb(18, 145, 18);">Accept</button>
+            </div>
+          </div>
+        </form>
+      </dialog>
       <div class="main-page-content">
         <div style="display: flex; flex-direction: column; row-gap: 30px;">
           <div class="dashboard-card" style="padding: 30px 0;">
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 0px 30px; margin-bottom: 30px;">
-              <p style="font-size: 20px; background-color: #ca8134; aspect-ratio: 1; border-radius: 100%; padding: 12px;">HC</p>
-              <button class="btn-secondary"><p style="width: 100%;">Edit</p></button>
+              <p data-project-info="buildingIcon" style="font-size: 20px; background-color: #ca8134; aspect-ratio: 1; border-radius: 100%; padding: 12px; text-transform: uppercase; display: flex; align-items: center; justify-content: center; ">HC</p>
+              <button id="edit-project-btn" class="btn-secondary"><p style="width: 100%;">Edit</p></button>
             </div>
             <div style="padding: 0 30px;">
               <div>
-                <h5 data-project-info="name">Hospital Center</h5>
-                <p data-project-info="description">Community hospital located at downtown</p>
+                <h5 data-project-info="buildingName" style="text-transform: capitalize;">Hospital Center</h5>
+                <p data-project-info="buildingDescription" style="text-transform: capitalize;">Community hospital located at downtown</p>
               </div>
               <div style="display: flex; column-gap: 30px; padding: 30px 0px; justify-content: space-between;">
                 <div>
                   <p style="color: #969696; font-size: var(--font-sm)">Status</p>
-                  <p data-project-info="status">Active</p>
+                  <p data-project-info="status" style="text-transform: capitalize;">Active</p>
                 </div>
                 <div>
                   <p style="color: #969696; font-size: var(--font-sm)">Cost</p>
@@ -101,7 +229,7 @@
                 </div>
                 <div>
                   <p style="color: #969696; font-size: var(--font-sm)">Role</p>
-                  <p data-project-info="userRole">Engineer</p>
+                  <p data-project-info="userRole" style="text-transform: capitalize;">Engineer</p>
                 </div>
                 <div>
                   <p style="color: #969696; font-size: var(--font-sm)">Finish Date</p>
@@ -119,21 +247,12 @@
               <div style="display: flex; align-items: center; justify-content: end; column-gap: 20px;">
                 <div style="display: flex; align-items: center; column-gap: 10px;">
                   <span class="material-symbols-rounded">search</span>
-                  <input type="text" placeholder="Search To-Do's by name" style="width: 100%;">
+                  <input  id="todoSearchBar" type="text" placeholder="Search To-Do's by name" style="width: 100%;">
                 </div>
-                <span class="material-symbols-rounded">add</span>
+                <span id="new-todo-btn" class="material-symbols-rounded action-button">add</span>
               </div>
             </div>
-            <div style="display: flex; flex-direction: column; padding: 10px 30px; row-gap: 20px;">
-              <div class="todo-item">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <div style="display: flex; column-gap: 15px; align-items: center;">
-                    <span class="material-symbols-rounded" style="padding: 10px; background-color: #686868; border-radius: 10px;">construction</span>
-                    <p>Make anything here as you want, even something longer.</p>
-                  </div>
-                  <p style="text-wrap: nowrap; margin-left: 10px;">Fri, 20 sep</p>
-                </div>
-              </div>
+            <div id="todos-list" style="display: flex; flex-direction: column; padding: 10px 30px; row-gap: 20px;">
             </div>
           </div>
         </div>
